@@ -57,7 +57,7 @@ def runtests():
         pass
 
     if args.postgres:
-        os.environ["DATABASE_ENGINE"] = "django.db.backends.postgresql"
+        os.environ["DATABASE_ENGINE"] = "django.db.backends.gaussdb"
 
     elif args.elasticsearch7:
         os.environ.setdefault("ELASTICSEARCH_URL", "http://localhost:9200")

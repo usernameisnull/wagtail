@@ -17,9 +17,9 @@ class WagtailSearchAppConfig(AppConfig):
     def ready(self):
         register_signal_handlers()
 
-        if connection.vendor == "postgresql":
+        if connection.vendor == "gaussdb":
             # Only PostgreSQL has support for tsvector weights
-            from wagtail.search.backends.database.postgres.weights import set_weights
+            from wagtail.search.backends.database.gaussdb.weights import set_weights
 
             set_weights()
 

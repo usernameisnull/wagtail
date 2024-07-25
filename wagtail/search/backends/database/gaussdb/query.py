@@ -1,4 +1,4 @@
-from django.contrib.postgres.search import SearchQueryField
+from django.contrib.gaussdb.search import SearchQueryField
 from django.db.models.expressions import Expression, Value
 
 

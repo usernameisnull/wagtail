@@ -12,41 +12,41 @@ class Migration(migrations.Migration):
         ("wagtailsearch", "0005_create_indexentry"),
     ]
 
-    if connection.vendor == "postgresql":
-        import django.contrib.postgres.indexes
-        import django.contrib.postgres.search
+    if connection.vendor == "gaussdb":
+        import django.contrib.gaussdb.indexes
+        import django.contrib.gaussdb.search
 
         operations = [
             migrations.AddField(
                 model_name="indexentry",
                 name="autocomplete",
-                field=django.contrib.postgres.search.SearchVectorField(),
+                field=django.contrib.gaussdb.search.SearchVectorField(),
             ),
             migrations.AddField(
                 model_name="indexentry",
                 name="title",
-                field=django.contrib.postgres.search.SearchVectorField(),
+                field=django.contrib.gaussdb.search.SearchVectorField(),
             ),
             migrations.AddField(
                 model_name="indexentry",
                 name="body",
-                field=django.contrib.postgres.search.SearchVectorField(),
+                field=django.contrib.gaussdb.search.SearchVectorField(),
             ),
             migrations.AddIndex(
                 model_name="indexentry",
-                index=django.contrib.postgres.indexes.GinIndex(
+                index=django.contrib.gaussdb.indexes.GinIndex(
                     fields=["autocomplete"], name="wagtailsear_autocom_476c89_gin"
                 ),
             ),
             migrations.AddIndex(
                 model_name="indexentry",
-                index=django.contrib.postgres.indexes.GinIndex(
+                index=django.contrib.gaussdb.indexes.GinIndex(
                     fields=["title"], name="wagtailsear_title_9caae0_gin"
                 ),
             ),
             migrations.AddIndex(
                 model_name="indexentry",
-                index=django.contrib.postgres.indexes.GinIndex(
+                index=django.contrib.gaussdb.indexes.GinIndex(
                     fields=["body"], name="wagtailsear_body_90c85d_gin"
                 ),
             ),

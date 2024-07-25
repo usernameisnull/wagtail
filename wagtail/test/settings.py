@@ -211,8 +211,8 @@ else:
     # in this scenario.
     WAGTAIL_USER_CUSTOM_FIELDS = ["country", "attachment"]
 
-if os.environ.get("DATABASE_ENGINE") == "django.db.backends.postgresql":
-    WAGTAILSEARCH_BACKENDS["postgresql"] = {
+if os.environ.get("DATABASE_ENGINE") == "django.db.backends.gaussdb":
+    WAGTAILSEARCH_BACKENDS["gaussdb"] = {
         "BACKEND": "wagtail.search.backends.database",
         "AUTO_UPDATE": False,
         "SEARCH_CONFIG": "english",

@@ -12,7 +12,7 @@ def set_page_path_collation(apps, schema_editor):
 
     See: https://groups.google.com/d/msg/wagtail/q0leyuCnYWI/I9uDvVlyBAAJ
     """
-    if schema_editor.connection.vendor == "postgresql":
+    if schema_editor.connection.vendor == "gaussdb":
         schema_editor.execute(
             """
             ALTER TABLE wagtailcore_page ALTER COLUMN path TYPE VARCHAR(255) COLLATE "C"

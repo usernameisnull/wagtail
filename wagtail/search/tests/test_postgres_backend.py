@@ -10,20 +10,20 @@ from wagtail.test.search import models
 
 
 @unittest.skipUnless(
-    connection.vendor == "postgresql", "The current database is not PostgreSQL"
+    connection.vendor == "gaussdb", "The current database is not GaussDB"
 )
 @override_settings(
     WAGTAILSEARCH_BACKENDS={
         "default": {
-            "BACKEND": "wagtail.search.backends.database.postgres.postgres",
+            "BACKEND": "wagtail.search.backends.database.gaussdb.gaussdb",
         }
     }
 )
 class TestPostgresSearchBackend(BackendTests, TestCase):
-    backend_path = "wagtail.search.backends.database.postgres.postgres"
+    backend_path = "wagtail.search.backends.database.gaussdb.gaussdb"
 
     def test_weights(self):
-        from ..backends.database.postgres.weights import (
+        from ..backends.database.gaussdb.weights import (
             BOOSTS_WEIGHTS,
             WEIGHTS_VALUES,
             determine_boosts_weights,
@@ -176,18 +176,18 @@ class TestPostgresSearchBackend(BackendTests, TestCase):
 
 
 @unittest.skipUnless(
-    connection.vendor == "postgresql", "The current database is not PostgreSQL"
+    connection.vendor == "gaussdb", "The current database is not GaussDB"
 )
 @override_settings(
     WAGTAILSEARCH_BACKENDS={
         "default": {
-            "BACKEND": "wagtail.search.backends.database.postgres.postgres",
+            "BACKEND": "wagtail.search.backends.database.gaussdb.gaussdb",
             "SEARCH_CONFIG": "dutch",
         }
     }
 )
 class TestPostgresLanguageTextSearch(TestCase):
-    backend_path = "wagtail.search.backends.database.postgres.postgres"
+    backend_path = "wagtail.search.backends.database.gaussdb.gaussdb"
 
     def setUp(self):
         # get search backend by backend_path

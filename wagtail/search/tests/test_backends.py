@@ -983,11 +983,11 @@ class TestBackendLoader(TestCase):
         self.assertIsInstance(db, DatabaseSearchBackend)
 
     @unittest.skipIf(
-        connection.vendor != "postgresql",
-        "Only applicable to PostgreSQL database systems",
+        connection.vendor != "gaussdb",
+        "Only applicable to GaussDB database systems",
     )
     def test_import_by_name_postgres_db_vendor(self):
-        from wagtail.search.backends.database.postgres.postgres import (
+        from wagtail.search.backends.database.gaussdb.gaussdb import (
             PostgresSearchBackend,
         )
 
@@ -995,11 +995,11 @@ class TestBackendLoader(TestCase):
         self.assertIsInstance(db, PostgresSearchBackend)
 
     @unittest.skipIf(
-        connection.vendor != "postgresql",
-        "Only applicable to PostgreSQL database systems",
+        connection.vendor != "gaussdb",
+        "Only applicable to GaussDB database systems",
     )
     def test_import_by_path_postgres_db_vendor(self):
-        from wagtail.search.backends.database.postgres.postgres import (
+        from wagtail.search.backends.database.gaussdb.gaussdb import (
             PostgresSearchBackend,
         )
 
@@ -1007,11 +1007,11 @@ class TestBackendLoader(TestCase):
         self.assertIsInstance(db, PostgresSearchBackend)
 
     @unittest.skipIf(
-        connection.vendor != "postgresql",
-        "Only applicable to PostgreSQL database systems",
+        connection.vendor != "gaussdb",
+        "Only applicable to GaussDB database systems",
     )
     def test_import_by_full_path_postgres_db_vendor(self):
-        from wagtail.search.backends.database.postgres.postgres import (
+        from wagtail.search.backends.database.gaussdb.gaussdb import (
             PostgresSearchBackend,
         )
 

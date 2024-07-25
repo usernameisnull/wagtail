@@ -2,7 +2,7 @@ import warnings
 from collections import OrderedDict
 from functools import reduce
 
-from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
+from django.contrib.gaussdb.search import SearchQuery, SearchRank, SearchVector
 from django.db import DEFAULT_DB_ALIAS, NotSupportedError, connections, transaction
 from django.db.models import Avg, Count, F, Manager, Q, TextField, Value
 from django.db.models.constants import LOOKUP_SEP
@@ -168,9 +168,9 @@ class Index:
         self.name = self.backend.index_name
         self.db_alias = DEFAULT_DB_ALIAS if db_alias is None else db_alias
         self.connection = connections[self.db_alias]
-        if self.connection.vendor != "postgresql":
+        if self.connection.vendor != "gaussdb":
             raise NotSupportedError(
-                "You must select a PostgreSQL database " "to use PostgreSQL search."
+                "You must select a GaussDB database " "to use GaussDB search."
             )
 
         # Whether to allow adding items via the faster upsert method available in Postgres >=9.5
@@ -438,7 +438,7 @@ class PostgresSearchQueryCompiler(BaseSearchQueryCompiler):
 
         elif isinstance(query, Boost):
             # Not supported
-            msg = "The Boost query is not supported by the PostgreSQL search backend."
+            msg = "The Boost query is not supported by the GaussDB search backend."
             warnings.warn(msg, RuntimeWarning)
 
             return self.build_tsquery_content(
@@ -482,7 +482,7 @@ class PostgresSearchQueryCompiler(BaseSearchQueryCompiler):
                 return reduce(lambda a, b: a | b, subquery_lexemes)
 
         raise NotImplementedError(
-            "`%s` is not supported by the PostgreSQL search backend."
+            "`%s` is not supported by the GaussDB search backend."
             % query.__class__.__name__
         )
 
@@ -522,7 +522,7 @@ class PostgresSearchQueryCompiler(BaseSearchQueryCompiler):
             ) / (len(query.subqueries) or 1)
 
         raise NotImplementedError(
-            "`%s` is not supported by the PostgreSQL search backend."
+            "`%s` is not supported by the GaussDB search backend."
             % query.__class__.__name__
         )
 
@@ -760,7 +760,7 @@ class PostgresSearchBackend(BaseSearchBackend):
         for connection in [
             connection
             for connection in connections.all()
-            if connection.vendor == "postgresql"
+            if connection.vendor == "gaussdb"
         ]:
             IndexEntry._default_manager.all()._raw_delete(using=connection.alias)
 

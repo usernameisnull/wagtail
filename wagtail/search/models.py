@@ -81,9 +81,9 @@ class BaseIndexEntry(models.Model):
 
 
 # AbstractIndexEntry will be defined depending on which database system we're using.
-if connection.vendor == "postgresql":
-    from django.contrib.postgres.indexes import GinIndex
-    from django.contrib.postgres.search import SearchVectorField
+if connection.vendor == "gaussdb":
+    from django.contrib.gaussdb.indexes import GinIndex
+    from django.contrib.gaussdb.search import SearchVectorField
 
     class AbstractPostgresIndexEntry(BaseIndexEntry):
         """

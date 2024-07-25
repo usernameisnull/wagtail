@@ -9,8 +9,8 @@ def SearchBackend(params):
     """
     Returns the appropriate search backend for the current 'default' database system
     """
-    if connection.vendor == "postgresql":
-        from .postgres.postgres import PostgresSearchBackend
+    if connection.vendor == "gaussdb":
+        from .gaussdb.gaussdb import PostgresSearchBackend
 
         return PostgresSearchBackend(params)
     elif connection.vendor == "mysql":

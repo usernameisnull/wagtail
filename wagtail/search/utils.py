@@ -202,5 +202,5 @@ def get_postgresql_connections():
     return [
         connection
         for connection in connections.all()
-        if connection.vendor == "postgresql"
+        if connection.vendor == "gaussdb"
     ]

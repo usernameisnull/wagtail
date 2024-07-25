@@ -40,8 +40,8 @@ def pytest_configure(config):
         # Deprecation warnings are ignored by default
         pass
 
-    if config.getoption("postgres"):
-        os.environ["DATABASE_ENGINE"] = "django.db.backends.postgresql"
+    if config.getoption("gaussdb"):
+        os.environ["DATABASE_ENGINE"] = "django.db.backends.gaussdb"
 
     # Setup django after processing the pytest arguments so that the env
     # variables are available in the settings
