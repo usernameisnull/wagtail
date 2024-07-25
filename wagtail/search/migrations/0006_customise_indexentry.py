@@ -34,20 +34,20 @@ class Migration(migrations.Migration):
             ),
             migrations.AddIndex(
                 model_name="indexentry",
-                index=django.contrib.gaussdb.indexes.GinIndex(
-                    fields=["autocomplete"], name="wagtailsear_autocom_476c89_gin"
+                index=django.contrib.gaussdb.indexes.BTreeIndex(
+                    fields=["autocomplete"], name="wagtailsear_autocom_476c89_ubtree"
                 ),
             ),
             migrations.AddIndex(
                 model_name="indexentry",
-                index=django.contrib.gaussdb.indexes.GinIndex(
-                    fields=["title"], name="wagtailsear_title_9caae0_gin"
+                index=django.contrib.gaussdb.indexes.BTreeIndex(
+                    fields=["title"], name="wagtailsear_title_9caae0_ubtree"
                 ),
             ),
             migrations.AddIndex(
                 model_name="indexentry",
-                index=django.contrib.gaussdb.indexes.GinIndex(
-                    fields=["body"], name="wagtailsear_body_90c85d_gin"
+                index=django.contrib.gaussdb.indexes.BTreeIndex(
+                    fields=["body"], name="wagtailsear_body_90c85d_ubtree"
                 ),
             ),
         ]
